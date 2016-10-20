@@ -2,6 +2,7 @@
   <div class="container">
     <logout :user="user" v-if="user"></logout>
     <login v-if="!user"></login>
+    <register v-if="!user"></register>
     <blog-list v-else></blog-list>
   </div>
 </template>
@@ -9,10 +10,11 @@
 <script>
   import Login from './Login'
   import Logout from './Logout'
+  import Register from './Register'
   import BlogList from './blogs/BlogList'
 
   export default {
-    components: { Login, Logout, BlogList },
+    components: { Login, Logout, Register, BlogList },
     data () {
       return {
         user: false
