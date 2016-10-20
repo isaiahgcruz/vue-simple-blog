@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div>
-      <label for="title">Title: </label>
-      <input type="text" name="title" v-model="title"/>
+  <div class="form-middle form-bordered">
+    <div class="form-group">
+      <label class="form-control" for="title">Title: </label>
+      <input class="form-control" type="text" name="title" v-model="title"/>
     </div>
-    <div>
-      <label for="content">Content: </label>
-      <input type="text" name="content" v-model="content"/>
+    <div class="form-group">
+      <label class="form-control" for="content">Content: </label>
+      <textarea class="form-control" type="text" name="content" v-model="content"></textarea>
     </div>
-    <div>
+    <div class="form-group">
       <button @click="addBlog">Add Blog</button>
     </div>
   </div>

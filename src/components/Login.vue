@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div>
-      <label for="username">Username: </label>
-      <input type="text" name="username" v-model="username"/>
+  <div class="form-middle form-bordered">
+    <div class="form-group">
+      <label class="form-control" for="username">Username: </label>
+      <input class="form-control" type="text" name="username" v-model="username"/>
     </div>
-    <div>
-      <label for="password">Password: </label>
-      <input type="password" name="password" v-model="password"/>
+    <div class="form-group">
+      <label class="form-control" for="password">Password: </label>
+      <input class="form-control" type="password" name="password" v-model="password"/>
     </div>
-    <div>
+    <div class="form-group">
       <button @click="login">Login</button>
     </div>
   </div>
