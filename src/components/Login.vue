@@ -35,6 +35,8 @@
           .then((response) => {
             window.localStorage.setItem('id_token', response.body.token)
             window.location.reload()
+          }, (response) => {
+            window.alert('Invalid login')
           })
       }
     }

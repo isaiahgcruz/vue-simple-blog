@@ -37,7 +37,7 @@
             window.alert('Account successfully created')
             window.location.reload()
           }, (response) => {
-            window.alert('Something happened')
+            window.alert('Invalid registration')
           })
       }
     }
