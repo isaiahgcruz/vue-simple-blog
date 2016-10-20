@@ -2,7 +2,7 @@
   <div class="form-middle form-bordered">
     <h1 class="blog-title">{{ title }}</h1>
     <p class="blog-content">{{ content }}</p>
-    <p class="blog-author">- {{ author }}</p>
+    <p class="blog-author">- {{ author }} | {{ createdAt }}</p>
   </div>
 </template>
 
@@ -18,6 +18,10 @@
         required: true
       },
       author: {
+        type: String,
+        required: true
+      },
+      createdAt: {
         type: String,
         required: true
       }

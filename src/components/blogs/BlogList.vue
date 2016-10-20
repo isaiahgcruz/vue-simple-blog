@@ -1,7 +1,13 @@
 <template>
   <div>
     <add-blog></add-blog>
-    <blog v-for="blog in blogs" :content="blog.content" :title="blog.title" author="author"></blog>
+    <blog 
+      v-for="blog in blogs" 
+      :content="blog.content" 
+      :title="blog.title" 
+      :author="blog._user.username" 
+      :created-at="blog.createdAt"
+    ></blog>
   </div>
 </template>
 
