@@ -1,13 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 // import App from './App'
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
-const Foo = { template: '<div>Foo</div>' }
+Vue.http.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('id_token')
+
+import Home from './components/Home'
 
 const routes = [
-  { path: '/', component: Foo }
+  { path: '/', component: Home }
 ]
 
 const router = new VueRouter({
