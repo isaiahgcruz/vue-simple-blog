@@ -30,7 +30,7 @@
         const payLoad = {
           token: window.localStorage.getItem('id_token')
         }
-        this.$http.post('http://localhost:3000/accounts', payLoad)
+        this.$http.post('http://localhost:3000/users', payLoad)
           .then((response) => {
             this.user = response.body.decoded
           }, (response) => {
