@@ -14,7 +14,7 @@
     methods: {
       logout () {
         window.localStorage.removeItem('id_token')
-        this.$parent.user = false
+        window.location.reload()
       }
     }
   }
