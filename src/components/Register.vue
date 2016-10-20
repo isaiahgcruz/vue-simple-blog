@@ -31,7 +31,7 @@
           username: this.username,
           password: this.password
         }
-        this.$http.post('http://localhost:3000/register', registerData)
+        this.$http.post('/api/register', registerData)
           .then((response) => {
             window.localStorage.setItem('id_token', response.body.token)
             window.alert('Account successfully created')

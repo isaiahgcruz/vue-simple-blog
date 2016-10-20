@@ -31,7 +31,7 @@
           username: this.username,
           password: this.password
         }
-        this.$http.post('http://localhost:3000/login', loginData)
+        this.$http.post('/api/login', loginData)
           .then((response) => {
             window.localStorage.setItem('id_token', response.body.token)
             window.location.reload()

@@ -27,7 +27,7 @@
     },
     methods: {
       fetchData () {
-        this.$http.get('http://localhost:3000/blogs')
+        this.$http.get('/api/blogs')
           .then((response) => {
             this.blogs = response.body.blogs
           })
