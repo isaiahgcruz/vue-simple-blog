@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## Backend
+
+Refer to [node-simple-blog](https://github.com/isaiahgcruz/node-simple-blog) for the NodeJS Backend API
+
 ## Build Setup
 
 ``` bash
