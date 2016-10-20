@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-middle">
     <button @click="logout">{{ user.username }} | Logout</button>
   </div>
 </template>
