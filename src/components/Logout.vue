@@ -1,6 +1,6 @@
 <template>
-  <div class="form-middle">
-    <button @click="logout">{{ user.username }} | Logout</button>
+  <div class="form-logout">
+    <button @click="logout" class="btn-logout">{{ user.username }} | Logout</button>
   </div>
 </template>
 
@@ -19,3 +19,8 @@
     }
   }
 </script>
+
+<style lang="sass">
+  .form-logout
+    width: 100%
+</style>
