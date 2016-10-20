@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Register</h2>
     <div class="form-middle form-bordered">
       <div class="form-group">
         <label class="form-control" for="username">Username: </label>
@@ -11,7 +11,7 @@
         <input class="form-control" type="password" name="password" v-model="password"/>
       </div>
       <div class="form-group">
-        <button @click="login">Login</button>
+        <button @click="register">Register</button>
       </div>
     </div>
   </div>
@@ -26,15 +26,18 @@
       }
     },
     methods: {
-      login () {
-        const loginData = {
+      register () {
+        const registerData = {
           username: this.username,
           password: this.password
         }
-        this.$http.post('http://localhost:3000/login', loginData)
+        this.$http.post('http://localhost:3000/register', registerData)
           .then((response) => {
             window.localStorage.setItem('id_token', response.body.token)
+            window.alert('Account successfully created')
             window.location.reload()
+          }, (response) => {
+            window.alert('Something happened')
           })
       }
     }
