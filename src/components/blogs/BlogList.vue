@@ -8,10 +8,7 @@
     </div>
     <blog 
       v-for="blog in blogs" 
-      :content="blog.content" 
-      :title="blog.title" 
-      :author="blog._user" 
-      :created-at="blog.createdAt"
+      :blog="blog"
     ></blog>
   </div>
 </template>
