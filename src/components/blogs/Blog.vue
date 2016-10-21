@@ -1,7 +1,18 @@
 <template>
   <div class="form-middle form-bordered">
-    <h1 class="blog-title">{{ blog.title }}</h1>
-    <p class="blog-content">{{ blog.content }}</p>
+    <div class="form-group" v-if="toEdit">
+      <label class="form-control" for="title">Title: </label>
+      <input class="form-control" type="text" name="title" v-model="title"/>
+    </div>
+    <h1 class="blog-title" v-else>{{ blog.title }}</h1>
+    <div class="form-group" v-if="toEdit">
+      <label class="form-control" for="content">Content: </label>
+      <textarea class="form-control" type="text" name="content" v-model="content"></textarea>
+    </div>
+    <p class="blog-content" v-else>{{ blog.content }}</p>
+    <div class="form-group" v-if="toEdit">
+      <button @click="updateBlog">Update Blog</button>
+    </div>
     <p
       class="blog-author text-link"
       @click="changeActiveUser(blog._user)"
@@ -14,8 +25,13 @@
       <span 
         class="blog-like text-link" 
         v-if="blog._user._id === user.id"
+        @click="editBlog"
+      >Edit</span>
+      <span 
+        class="blog-like text-link" 
+        v-if="blog._user._id === user.id"
         @click="deleteBlog(blog)"
-      >Delete blog</span>
+      >Delete</span>
     </span>
   </div>
 </template>
@@ -30,7 +46,10 @@
     },
     data () {
       return {
-        user: this.$parent.$parent.user
+        user: this.$parent.$parent.user,
+        toEdit: false,
+        content: '',
+        title: ''
       }
     },
     computed: {
@@ -73,6 +92,22 @@
         this.$http.delete('api/blogs/' + blog._id)
           .then((response) => {
             this.$parent.fetchData()
+          })
+      },
+      editBlog () {
+        this.toEdit = true
+        this.title = this.blog.title
+        this.content = this.blog.content
+      },
+      updateBlog () {
+        const blogData = {
+          title: this.title,
+          content: this.content
+        }
+        this.$http.put('/api/blogs/' + this.blog._id, blogData)
+          .then((response) => {
+            this.$parent.fetchData()
+            this.toEdit = false
           })
       }
     }
