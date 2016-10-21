@@ -6,10 +6,17 @@
       class="blog-author text-link"
       @click="changeActiveUser(blog._user)"
     >- {{ blog._user.username }} | {{ blog.createdAt }}</p>
-    <span 
-      class="blog-like text-link" 
-      @click="toggleLike(blog)"
-    >{{ (toLike) ?  'Like' : 'Unlike '}} {{ likeString }}</span>
+    <span>
+      <span 
+        class="blog-like text-link text-right" 
+        @click="toggleLike(blog)"
+      >{{ (toLike) ?  'Like' : 'Unlike '}} {{ likeString }}</span> <br/>
+      <span 
+        class="blog-like text-link" 
+        v-if="blog._user._id === user.id"
+        @click="deleteBlog(blog)"
+      >Delete blog</span>
+    </span>
   </div>
 </template>
 
@@ -58,6 +65,12 @@
       toggleLike (blog) {
         const apiUrl = (this.toLike) ? 'api/blogs/' + blog._id + '/like' : 'api/blogs/' + blog._id + '/unlike'
         this.$http.post(apiUrl)
+          .then((response) => {
+            this.$parent.fetchData()
+          })
+      },
+      deleteBlog (blog) {
+        this.$http.delete('api/blogs/' + blog._id)
           .then((response) => {
             this.$parent.fetchData()
           })
