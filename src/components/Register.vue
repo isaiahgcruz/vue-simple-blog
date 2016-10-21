@@ -11,6 +11,10 @@
         <input class="form-control" type="password" name="password" v-model="password"/>
       </div>
       <div class="form-group">
+        <label class="form-control" for="confirm-password">Confirm Password: </label>
+        <input class="form-control" type="password" name="confirm-password" v-model="confirmPassword"/>
+      </div>
+      <div class="form-group">
         <button @click="register">Register</button>
       </div>
     </div>
@@ -22,23 +26,28 @@
     data () {
       return {
         username: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
       }
     },
     methods: {
       register () {
-        const registerData = {
-          username: this.username,
-          password: this.password
+        if (this.confirmPassword === this.password) {
+          const registerData = {
+            username: this.username,
+            password: this.password
+          }
+          this.$http.post('/api/register', registerData)
+            .then((response) => {
+              window.localStorage.setItem('id_token', response.body.token)
+              window.alert('Account successfully created')
+              window.location.reload()
+            }, (response) => {
+              window.alert('Invalid registration')
+            })
+        } else {
+          window.alert('Passwords are not the same')
         }
-        this.$http.post('/api/register', registerData)
-          .then((response) => {
-            window.localStorage.setItem('id_token', response.body.token)
-            window.alert('Account successfully created')
-            window.location.reload()
-          }, (response) => {
-            window.alert('Invalid registration')
-          })
       }
     }
   }
