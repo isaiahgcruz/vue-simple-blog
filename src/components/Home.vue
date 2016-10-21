@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <logout :user="user" v-if="user"></logout>
+    <navbar :user="user"></navbar>
     <login v-if="!user"></login>
     <register v-if="!user"></register>
     <blog-list v-else></blog-list>
@@ -10,11 +10,12 @@
 <script>
   import Login from './Login'
   import Logout from './Logout'
+  import Navbar from './Navbar'
   import Register from './Register'
   import BlogList from './blogs/BlogList'
 
   export default {
-    components: { Login, Logout, Register, BlogList },
+    components: { Login, Logout, Navbar, Register, BlogList },
     data () {
       return {
         user: false
