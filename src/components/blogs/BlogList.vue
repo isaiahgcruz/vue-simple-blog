@@ -1,11 +1,16 @@
 <template>
   <div>
     <add-blog></add-blog>
+    <div class="form-middle">
+      <h1 v-if="activeUser">{{ activeUser.username }}'s Blogs</h1>
+      <h6 class="text-link" v-if="activeUser" @click="viewAllBlogs">View All</h6>
+      <h1 v-else>All Blogs</h1>
+    </div>
     <blog 
       v-for="blog in blogs" 
       :content="blog.content" 
       :title="blog.title" 
-      :author="blog._user.username" 
+      :author="blog._user" 
       :created-at="blog.createdAt"
     ></blog>
   </div>
@@ -19,7 +24,8 @@
     components: { Blog, AddBlog },
     data () {
       return {
-        blogs: {}
+        blogs: {},
+        activeUser: false
       }
     },
     created () {
@@ -27,11 +33,22 @@
     },
     methods: {
       fetchData () {
-        this.$http.get('/api/blogs')
+        const apiUrl = (this.activeUser) ? 'api/users/' + this.activeUser._id + '/blogs' : '/api/blogs'
+        this.$http.get(apiUrl)
           .then((response) => {
             this.blogs = response.body.blogs
           })
+      },
+      viewAllBlogs () {
+        this.activeUser = false
+        this.fetchData()
       }
     }
   }
 </script>
+
+<style lang="sass">
+  .text-link
+    cursor: pointer
+    text-decoration: underline
+</style>

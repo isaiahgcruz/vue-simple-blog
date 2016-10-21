@@ -2,7 +2,7 @@
   <div class="form-middle form-bordered">
     <h1 class="blog-title">{{ title }}</h1>
     <p class="blog-content">{{ content }}</p>
-    <p class="blog-author">- {{ author }} | {{ createdAt }}</p>
+    <p class="blog-author text-link" @click="changeActiveUser(author)">- {{ author.username }} | {{ createdAt }}</p>
   </div>
 </template>
 
@@ -18,12 +18,18 @@
         required: true
       },
       author: {
-        type: String,
+        type: Object,
         required: true
       },
       createdAt: {
         type: String,
         required: true
+      }
+    },
+    methods: {
+      changeActiveUser (user) {
+        this.$parent.activeUser = user
+        this.$parent.fetchData()
       }
     }
   }
